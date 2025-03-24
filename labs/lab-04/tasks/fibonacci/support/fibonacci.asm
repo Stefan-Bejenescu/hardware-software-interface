@@ -14,5 +14,20 @@ main:
     PRINTF32 `%d\n\x0`, ecx  ; DO NOT REMOVE/MODIFY THIS LINE
 
     ; TODO: calculate the N-th fibonacci number (f(0) = 0, f(1) = 1)
+    mov eax, 0
+    mov ebx, 1
 
+fib:
+    dec ecx
+    test ecx, ecx
+    je print
+    mov edx, eax
+    add edx, ebx
+    mov eax, ebx
+    mov ebx, edx
+    jmp fib
+
+print:
+    PRINTF32 `%d\n\x0`, ebx
+    xor eax, eax
     ret
