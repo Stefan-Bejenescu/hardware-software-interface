@@ -8,7 +8,28 @@
 
 int main(void)
 {
-	/* TODO: Test function */
+	char *s;
+
+	s = new_string("LoremIpsum");
+	printf("mirror(\"%s\") = ", s);
+	mirror(s);
+	printf("\"%s\"\n", s);
+	free(s);
+	s = NULL;
+
+	s = new_string("asdfghjl");
+	printf("mirror(\"%s\") = ", s);
+	mirror(s);
+	printf("\"%s\"\n", s);
+	free(s);
+	s = NULL;
+
+	s = new_string("qwerty");
+	printf("mirror(\"%s\") = ", s);
+	mirror(s);
+	printf("\"%s\"\n", s);
+	free(s);
+	s = NULL;
 
 	return 0;
 }

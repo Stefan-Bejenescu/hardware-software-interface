@@ -9,6 +9,10 @@
 
 #define STR_SIZE 512
 
+char *new_string(const char *cont_str);
+
+int my_strlen(const char *str);
+
 void mirror(char *s);
 
 #endif /* MIRROR_H */
