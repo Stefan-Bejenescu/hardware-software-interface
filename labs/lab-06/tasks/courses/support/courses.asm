@@ -80,6 +80,7 @@ main:
 	; TODO: Print the list of students and the courses where they are assigned
 	xor ecx, ecx
 
+final_print:
 	mov ebx, students
 	mov edx, ecx
 	imul edx, student_t_size
