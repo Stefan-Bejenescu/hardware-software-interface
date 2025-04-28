@@ -13,6 +13,13 @@ print_string_length:
 
     ; TODO: print the string length
 
+    mov ecx, [ebp + 8]
+
+    push ecx
+    push print_format
+    call printf
+    add esp, 8
+
     pop ebx
     leave
     ret
