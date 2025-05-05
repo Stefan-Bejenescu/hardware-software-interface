@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: BSD-3-Clause
+extern int puts(const char *str);
 
 static void hi(void)
 {
