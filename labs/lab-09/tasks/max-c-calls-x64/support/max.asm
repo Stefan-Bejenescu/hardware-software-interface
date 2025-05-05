@@ -8,6 +8,8 @@ get_max:
     push rbp
     mov rbp, rsp
 
+    push rbx;
+
     mov rbx, rdi ; first argument
 	mov rcx, rsi ; second argument
 
@@ -16,9 +18,13 @@ get_max:
 compare:
     cmp eax, [rbx+rcx*4-4]
     jge check_end
+    mov r12, rcx
+    dec r12
+    mov [rdx], r12
     mov rax, [rbx+rcx*4-4]
 check_end:
     loopnz compare
 
+    pop rbx
     leave
     ret
