@@ -1,6 +1,6 @@
 section .data
     mystring db "This is my string", 0
-    fmt_str db "[before]: %s\n[after]: ", 0
+    print_format db "String length is %d", 10, 0
 
 section .text
 
@@ -23,10 +23,15 @@ test_one_byte:
     jmp test_one_byte
 
 out:
-    push mystring
-    push fmt_str
+    ; save ecx's value since it can be changed by printf
+    push ecx
+
+    push ecx
+    push print_format
     call printf
     add esp, 8
+
+    pop ecx
 
     push ecx
     push mystring
