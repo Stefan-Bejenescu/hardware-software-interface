@@ -46,6 +46,11 @@ fill_byte:
     cmp ecx, 64
     jl fill_byte
 
+    mov byte [ebx + 64], 0xEF
+    mov byte [ebx + 65], 0xBE
+    mov byte [ebx + 66], 0xAD
+    mov byte [ebx + 67], 0xDE
+
     ; TODO 3: Print "DEADBEEF" instead of "CAFEBABE"
 
     ; Text before printing buffer.
@@ -72,7 +77,8 @@ print_byte:
     ; TODO 1: Print the next bytes 4
     ; TODO 2: After printing the local variable,
     ; print the next 8 bytes (What contain the next 8 bytes?)
-    cmp ecx, 64
+    ; cmp ecx, 68
+    cmp ecx, 76
     jl print_byte
 
     ; Print new line. C equivalent instruction is puts("").
