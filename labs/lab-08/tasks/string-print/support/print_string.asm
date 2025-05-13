@@ -10,6 +10,12 @@ print_string:
 
     ; TODO: print the string
 
+    mov eax, [ebp + 8]
+
+    push eax
+    call puts
+    add esp, 4
+
     pop ebx
     leave
     ret
