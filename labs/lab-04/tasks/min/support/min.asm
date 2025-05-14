@@ -20,6 +20,12 @@ main:
                             ; DO NOT REMOVE/MODIFY THIS LINE
 
     ; TODO: find the minimum of the two numbers and store it in eax
-    PRINTF32 `%d\n\x0`, eax ; print the minimum
 
+    cmp eax, ebx
+    jl print
+    xchg eax, ebx
+
+print:
+    PRINTF32 `%d\n\x0`, eax ; print the minimum
+    xor eax, eax
     ret
