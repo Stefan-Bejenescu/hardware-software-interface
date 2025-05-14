@@ -16,10 +16,10 @@ sample_student:
     istruc stud_struct
         at name, db 'Andrei', 0
         at surname, db 'Voinea', 0
-        at age, db 21
-        at group, db '321CA', 0
+        at age, db 22
+        at group, db '323CA', 0
         at gender, db 1
-        at birth_year, dw 1994
+        at birth_year, dw 1993
     iend
 
 format_name db "Name: %s", 10, 0
