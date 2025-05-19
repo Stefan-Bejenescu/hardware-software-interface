@@ -13,7 +13,7 @@ int main(void)
 	size_t i, len;
 
 	printf("insert buffer string: ");
-	fgets(buffer, 128, stdin);
+	fgets(buffer, 131, stdin);
 
 	printf("buffer is: ");
 	len = strlen(buffer);
