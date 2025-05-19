@@ -7,30 +7,41 @@
 
 void print_chars(void)
 {
-	/**
-	 * TODO: Implement function
-	 */
-	(void) v;
+	int n = sizeof(v);
+	unsigned char *c = (unsigned char *) &v;
+
+	while (n--) {
+		printf("%p -> 0x%x\n", c, *c);
+		c++;
+	}
 
 	printf("-------------------------------\n");
 }
 
 void print_shorts(void)
 {
-	/**
-	 * TODO: Implement function
-	 */
-	(void) v;
+	int n = sizeof(v);
+	unsigned short *s = (unsigned short *) &v;
+
+	while (n) {
+		printf("%p -> 0x%x\n", s, *s);
+		s++;
+		n -= 2;
+	}
 
 	printf("-------------------------------\n");
 }
 
 void print_ints(void)
 {
-	/**
-	 * TODO: Implement function
-	 */
-	(void) v;
+	int n = sizeof(v);
+	unsigned int *i = (unsigned int *) &v;
+
+	while (n) {
+		printf("%p -> 0x%x\n", i, *i);
+		i++;
+		n -= 4;
+	}
 
 	printf("-------------------------------\n");
 }

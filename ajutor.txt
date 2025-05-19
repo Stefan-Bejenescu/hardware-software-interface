@@ -1,0 +1,3 @@
+nasm -f elf64 code.asm -o code.o
+gcc -c second.c -o second.o
+gcc second.o code.o -o myexe

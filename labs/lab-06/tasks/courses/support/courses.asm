@@ -78,5 +78,38 @@ main:
 	mov ebp, esp
 	PRINTF32 `The students list is:\n\x0`
 	; TODO: Print the list of students and the courses where they are assigned
+	xor ecx, ecx
+
+print_name:
+	mov eax, students
+	mov ebx, ecx
+	imul ebx, student_t_size
+	add eax, ebx
+	mov ebx, eax
+	add eax, name
+	PRINTF32 `%s ---- \x0`, eax
+
+	mov eax, ebx
+	add eax, check
+	mov eax, [eax]
+	cmp eax, 1
+	je print_course
+	PRINTF32 `%s\n\x0`, unassigned
+	jmp next
+
+print_course:
+	add ebx, id_course
+	mov ebx, [ebx]
+	mov eax, courses
+	imul ebx, course_t_size
+	add eax, ebx
+	add eax, name_course
+	PRINTF32 `%s\n\x0`, eax
+
+next:
+	inc ecx
+	cmp ecx, [v_students_count]
+	jl print_name
+	
     leave
     ret

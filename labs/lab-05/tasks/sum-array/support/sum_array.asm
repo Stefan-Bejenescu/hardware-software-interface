@@ -11,6 +11,8 @@ section .data
     dword_array2 dd 1392, 12544, 7992, 6992, 7202, 27187, 28789, 17897, 12988, 17992 ; for squares
     big_numbers_array dd 20000001, 3000000, 3000000, 23456789, 56789123, 123456789, 987654321, 56473829, 87564836, 777777777
     ; HINT: define two variables for the big_numbers_sum
+    low_bits dd 0
+    high_bits dd 0
 
 section .text
 extern printf
@@ -31,10 +33,61 @@ add_byte_array_element:
     PRINTF32 `Array sum is %u\n\x0`, eax
 
     ; TODO: Compute sum for elements in word_array and dword_array.
+    mov ecx, ARRAY_SIZE
+    xor edx, edx
+    xor eax, eax
+
+add_word_array_element:
+    mov dx, word [word_array + 2 * ecx - 2]
+    add eax, edx
+    loop add_word_array_element
+
+    PRINTF32 `Array sum is %u\n\x0`, eax
+
+    mov ecx, ARRAY_SIZE
+    xor eax, eax
+    xor edx, edx
+
+add_dword_array_element:
+    mov edx, dword [dword_array + 4 * ecx - 4]
+    add eax, edx
+    loop add_dword_array_element
+
+    PRINTF32 `Array sum is: %u\n\x0`, eax
 
     ; TODO: Compute the sum of squares for elements in dword_array2
+    mov ecx, ARRAY_SIZE
+    xor eax, eax
+    xor edx, edx
+    xor ebx, ebx
+
+add_dword2_array_element:
+    push eax
+    mov eax, dword [dword_array2 + 4 * ecx - 4]
+    mov ebx, eax
+    mul ebx
+    mov edx, eax
+    pop eax
+    add eax, edx
+    loop add_dword2_array_element
+
+    PRINTF32 `Array sum is %u\n\x0`, eax
 
     ; TODO: Compute the sum of squares for elements in big_numbers_array
+    xor eax, eax
+    mov ecx, ARRAY_SIZE
+    xor edx, edx
+
+add_dword_array_element_big:
+    xor edx, edx
+    mov eax, dword [big_numbers_array + 4 * ecx - 4]
+    mov ebx, dword [big_numbers_array + 4 * ecx - 4]
+    mul ebx
+    add [low_bits], eax
+    adc [high_bits], edx
+    loop add_dword_array_element_big
+
+    PRINTF32 `Array sum is %lld\n\x0`, [low_bits], [high_bits]
 
     leave
     ret
