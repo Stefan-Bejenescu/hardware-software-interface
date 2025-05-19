@@ -20,6 +20,21 @@ main:
 
     ; Use the loop instruction
 
+    xor eax, eax
+    mov ecx, [N]
+    mov ebx, 0
+    mov edx, 1
+
+    cmp ecx, 0
+    je print
+
+fibonacci_loop:
+    add eax, ebx
+    add ebx, edx
+    xchg ebx, edx
+    loop fibonacci_loop
+
+print:
     push eax
     push dword [N]
     push sum_print_format

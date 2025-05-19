@@ -1,11 +1,13 @@
-%include "printf32.asm"
+;  SPDX-License-Identifier: BSD-3-Clause
+
+%include "../utils/printf32.asm"
 
 section .text
 
 extern printf
 global main
 main:
-    ; input values (eax, edx): the 2 numbers to compute the gcd for
+    ; Input values (eax, edx) : the 2 numbers to compute the gcd for.
     mov eax, 49
     mov edx, 28
 
@@ -34,11 +36,10 @@ gcd_end:
     inc eax
 
 print:
+    pop edx
+    pop ebx
 
-    ; TODO 1: solve the 'Segmentation fault!' error
-
-    ; TODO 2: print the result in the form of: "gdc(eax, edx)=7" with PRINTF32 macro
-    ; output value in eax
+    PRINTF32 `gcd(%d, %d) = %d\n\x0`, ebx, edx, eax  ; eax = greatest common divisor
 
     xor eax, eax
     ret

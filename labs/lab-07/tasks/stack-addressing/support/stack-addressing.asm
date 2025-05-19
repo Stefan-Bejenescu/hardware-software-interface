@@ -12,13 +12,21 @@ main:
     ; TODO 1: replace every "push" instruction by an equivalent sequence of commands (use direct addressing of memory. Hint: esp)
     mov ecx, NUM
 push_nums:
-    push ecx
+    sub esp, 4
+    mov dword [esp], ecx
     loop push_nums
 
-    push 0
-    push "corn"
-    push "has "
-    push "Bob "
+    sub esp, 4
+    mov dword [esp], 0
+
+    sub esp, 4
+    mov dword [esp], "corn"
+
+    sub esp, 4
+    mov dword [esp], "has "
+
+    sub esp, 4
+    mov dword [esp], "Bob "
 
     lea esi, [esp]
     PRINTF32 `%s\n\x0`, esi
