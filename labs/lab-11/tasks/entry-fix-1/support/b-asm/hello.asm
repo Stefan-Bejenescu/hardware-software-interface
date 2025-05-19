@@ -8,6 +8,7 @@ section .rodata
     bye_str db "Bye!", 0
 
 section .text
+global main
 
 hi:
     push ebp
